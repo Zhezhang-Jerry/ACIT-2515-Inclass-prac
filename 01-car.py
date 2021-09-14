@@ -10,9 +10,21 @@ class Car:
         self.make = make
         self.model = model
         self.electric = electric
-        self._mileage = mileage
+        self._mileage = float(mileage)
 
         self.is_driving = False
+
+    @property
+    def mileage(self):
+        return self._mileage
+
+    @mileage.setter
+    def mileage(self, value):
+        value = float(value)
+        if value < 0:
+            raise ValueError
+
+        self._mileage = value
 
     def drive(self):
         self.is_driving = True
@@ -75,23 +87,27 @@ def test_code_3():
     chevrolet.mileage = 1000
     chevrolet.drive()
     chevrolet.stop(1000)
+    print(chevrolet._mileage)
     assert chevrolet.mileage == 2000
 
 
 if __name__ == "__main__":
     # You can also write your own code below to test your code
-    # test_code_1()
-    # test_code_2()
-    # test_code_3()
-    car = Car("Toyata", "Corolla", mileage=35000)
-    print(car.get_description())
+    test_code_1()
+    test_code_2()
+    test_code_3()
 
-    car.drive()
-    print(car.is_driving)
 
-    car.stop()
-    print(car.get_description())
 
-    car.drive()
-    car.stop("5425324234235")
-    print(car.get_description())
+    # car = Car("Toyata", "Corolla", mileage=35000)
+    # print(car.get_description())
+
+    # car.drive()
+    # print(car.is_driving)
+
+    # car.stop()
+    # print(car.get_description())
+
+    # car.drive()
+    # car.stop("5425324234235")
+    # print(car.get_description())
