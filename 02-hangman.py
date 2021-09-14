@@ -2,6 +2,9 @@
 Below is template code for the "Hangman" assignment. Adapt it to your needs.
 """
 
+from hashlib import new
+import random
+
 NUMBER_OF_TURNS = 10
 
 class SecretWord:
@@ -9,13 +12,33 @@ class SecretWord:
     Represents a word to be guessed by the player
     """
     def __init__(self):
-        # Open the file and set the _secret_word
-        pass
+        self._secret_word = None
+        if self._secret_word == None:
+            with open ('words.txt', 'r') as f:
+                content = f.readlines()
+                word_list = [i.strip() for i in content]
+
+            self._secret_word = word_list[random.randint(0, len(word_list) - 1)]
+
+    def show_letter(self, letter_list):
+        new_word = ''
+        for letter in self._secret_word:
+            if letter in letter_list:
+                new_word = new_word + letter.upper() + ' '
+            else:
+                new_word = new_word + '_' + ' '
+        
+        return new_word
+
+    def check(self, letter):
+        if letter in self._secret_word:
+            return True
+        else:
+            return False
 
     @property
     def letters(self):
-        # Return a collection of unique letters in the word
-        pass
+        return set(self._secret_word)
 
 class Game:
     """
