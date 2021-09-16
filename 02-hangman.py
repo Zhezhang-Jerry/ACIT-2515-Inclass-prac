@@ -21,7 +21,6 @@ class SecretWord:
                 word_list = [i.strip() for i in content]
 
             self._secret_word = word_list[random.randint(0, len(word_list) - 1)]
-            print(self._secret_word)
 
     def show_letter(self, letter_list):
         new_word = ''
@@ -62,8 +61,7 @@ class Game:
             if player_input.lower() != "check":
                 guess = player_input
                 self.letters.append(guess.lower())
-                new_word = self.word.show_letter(self.letters)
-                print(new_word)
+                print(self.word.show_letter(self.letters))
             else:
                 final_guess = input("Please guess the word: ")
                 return self.word.check(final_guess)
@@ -72,16 +70,21 @@ class Game:
 
 
     def play(self):
-        result = False
-        while result is not True:
+        result_check = False
+        result_game = ""
+
+        while result_check is not True:
             if self.turns_remaining != 0:
                 print("you have",self.turns_remaining, "times remaining")
                 self.turns_remaining = self.turns_remaining - 1
-                result = self.play_one_round()
+                result_check = self.play_one_round()
+                if result_check is True:
+                    result_game = "Yeah, you win the game!"
             else:
-                print("Sorry, you lose.")
+                result_game = "Sorry, you lose."
+                result_check = True
 
-        print("Yeah, you win the game!")
+        print(result_game)
 
         
 

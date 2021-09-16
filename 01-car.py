@@ -91,11 +91,11 @@ def test_code_3():
     assert chevrolet.mileage == 2000
 
 
-if __name__ == "__main__":
-    # You can also write your own code below to test your code
-    test_code_1()
-    test_code_2()
-    test_code_3()
+# if __name__ == "__main__":
+#     # You can also write your own code below to test your code
+#     test_code_1()
+#     test_code_2()
+#     test_code_3()
 
 
 
